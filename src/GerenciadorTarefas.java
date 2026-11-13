@@ -6,7 +6,7 @@ public class GerenciadorTarefas {
     //new ArrayList<>(): cria a lista vazia.
     //cada instância de GerenciadorTarefas terá sua própria coleção.
     public void adicionarTarefa(Tarefa tarefa){
-        if(buscarTarefaPorId(tarefa.getId()) != null || tarefa == null ){
+        if(tarefa == null || buscarTarefaPorId(tarefa.getId()) != null ){
             throw new IllegalArgumentException("Tarefa inválida ou ID duplicado");
         }
         tarefas.add(tarefa); 
@@ -56,18 +56,16 @@ public class GerenciadorTarefas {
         if(tarefa == null){
             throw new IllegalArgumentException("Tarefa não encontrada");
         }
-        tarefa.atualizarDadosDaTarefa(id, novoTitulo, novaDescricao);
+        tarefa.atualizarDadosDaTarefa( novoTitulo, novaDescricao);
     }
 
     //Atualmente, o método atualizarTarefa() busca a tarefa pelo ID e, se encontrada, chama o método atualizarDadosDaTarefa() da classe Tarefa para atualizar os dados. Se a tarefa não for encontrada, lança uma exceção.
-    public Boolean removerTarefa(Long id){
-        Tarefa tarefa = buscarTarefaPorId(id);
-        if(tarefa == null){
-            throw new IllegalArgumentException("Tarefa não encontrada");
-        }
-        tarefas.remove(tarefa);
-        return true;
-        //O método removerTarefa() busca a tarefa pelo ID e, se encontrada, remove
+   public boolean removerTarefa(Long id) {
+    Tarefa tarefa = buscarTarefaPorId(id);
+    if (tarefa == null) {
+        return false;
     }
+    return tarefas.remove(tarefa);
+}
    
 }

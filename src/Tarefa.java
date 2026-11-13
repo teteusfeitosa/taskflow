@@ -32,7 +32,7 @@ public class Tarefa {
         this.concluida = true;
     }
 
-    public void atualizarDadosDaTarefa(Long id, String novoTitulo, String novaDescricao){
+    public void atualizarDadosDaTarefa(String novoTitulo, String novaDescricao){
         if(novoTitulo == null || novoTitulo.isBlank()){
             throw new IllegalArgumentException("Título inválido");
         }

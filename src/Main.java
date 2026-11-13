@@ -22,16 +22,21 @@ public class Main {
 
         gerenciador.listarTarefas();
 
-        t1.concluir();
+        
 
         gerenciador.buscarTarefaPorId(1l);
         gerenciador.buscarTarefaPorId(4l);
 
-        t1.isConcluida();
+        
         t2.isConcluida();
+
 
         System.out.println("Tarefa 2 concluída? " + t2.isConcluida());
 
+        t2.concluir();
+
+        System.out.println("Tarefa 2 concluída? " + t2.isConcluida());
+        
         gerenciador.buscarTarefaPorId(1l);
 
 
