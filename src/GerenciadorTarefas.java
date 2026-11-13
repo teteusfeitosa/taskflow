@@ -1,24 +1,4 @@
 import java.util.ArrayList;
-/*
-Adicionar as três tarefas.
-
-
-
-Listar todas.
-
-
-
-Buscar uma tarefa existente.
-
-
-
-Buscar um ID inexistente.
-
-
-
-Concluir uma tarefa encontrada e verificar seu novo estad
-
-*/
 
 public class GerenciadorTarefas {
     private ArrayList <Tarefa> tarefas = new ArrayList<>(); //ArrayList<Tarefa>: coleção que aceita objetos da classe Tarefa.
@@ -26,8 +6,10 @@ public class GerenciadorTarefas {
     //new ArrayList<>(): cria a lista vazia.
     //cada instância de GerenciadorTarefas terá sua própria coleção.
     public void adicionarTarefa(Tarefa tarefa){
-        tarefas.add(tarefa);
-
+        if(buscarTarefaPorId(tarefa.getId()) != null || tarefa == null ){
+            throw new IllegalArgumentException("Tarefa inválida ou ID duplicado");
+        }
+        tarefas.add(tarefa); 
         //Esse método recebe um objeto Tarefa e o adiciona à lista.
         //Por enquanto, é simples. Posteriormente, precisaremos impedir tarefas nulas e IDs duplicados. 
     }
@@ -65,10 +47,27 @@ public class GerenciadorTarefas {
         return null;
     }
 
+    public void atualizarTarefa(
+        Long id, 
+        String novoTitulo, 
+        String novaDescricao
+    ){
+        Tarefa tarefa = buscarTarefaPorId(id);
+        if(tarefa == null){
+            throw new IllegalArgumentException("Tarefa não encontrada");
+        }
+        tarefa.atualizarDadosDaTarefa(id, novoTitulo, novaDescricao);
+    }
 
-
-
-
-
-    
+    //Atualmente, o método atualizarTarefa() busca a tarefa pelo ID e, se encontrada, chama o método atualizarDadosDaTarefa() da classe Tarefa para atualizar os dados. Se a tarefa não for encontrada, lança uma exceção.
+    public Boolean removerTarefa(Long id){
+        Tarefa tarefa = buscarTarefaPorId(id);
+        if(tarefa == null){
+            throw new IllegalArgumentException("Tarefa não encontrada");
+        }
+        tarefas.remove(tarefa);
+        return true;
+        //O método removerTarefa() busca a tarefa pelo ID e, se encontrada, remove
+    }
+   
 }
