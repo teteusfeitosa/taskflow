@@ -12,9 +12,9 @@ A task management application built with **Java 21**, developed incrementally as
 - Mark tasks as completed.
 - Update task title and description.
 - Remove tasks.
-- Reject duplicate IDs (with a null-check fix still pending).
+- Reject null tasks and duplicate IDs with validation before insertion.
 
-**Known limitations:** The current implementation needs a corrected null check in `adicionarTarefa`, consistent handling of missing IDs on removal, and more complete tests. Data is lost when the program stops.
+**Known limitations:** Automated tests and comprehensive edge-case scenarios are still pending. Data is stored only in memory and is lost when the program stops.
 
 ## Tech stack
 
@@ -57,7 +57,8 @@ Searching by ID currently uses a linear scan, with **O(n)** worst-case time comp
 
 - [x] Model the `Tarefa` entity.
 - [x] Implement in-memory CRUD methods.
-- [ ] Fix edge cases and add more test scenarios.
+- [x] Fix null checks and define consistent removal behavior for missing IDs.
+- [ ] Add automated tests and more edge-case scenarios.
 - [ ] Add an interactive command-line menu.
 - [ ] Migrate to a Spring Boot REST API.
 - [ ] Persist tasks using MySQL and JPA.
