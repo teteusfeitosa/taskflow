@@ -11,7 +11,6 @@ public class GerenciadorTarefas {
         }
         tarefas.add(tarefa); 
         //Esse método recebe um objeto Tarefa e o adiciona à lista.
-        //Por enquanto, é simples. Posteriormente, precisaremos impedir tarefas nulas e IDs duplicados. 
     }
     public void listarTarefas(){
         for(Tarefa tarefa : tarefas){
